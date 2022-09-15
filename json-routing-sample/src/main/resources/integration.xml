@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <beans  
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:integration="http://www.springframework.org/schema/integration"
+xmlns:int-http="http://www.springframework.org/schema/integration/http"
+xmlns:jms="http://www.springframework.org/schema/integration/jms"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/integration https://www.springframework.org/schema/integration/spring-integration.xsd http://www.springframework.org/schema/integration/http  http://www.springframework.org/schema/integration/http/spring-integration-http.xsd http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd "
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:int="http://www.springframework.org/schema/integration">
+ <int-http:inbound-channel-adapter channel="channel1" path="/publish" supported-methods="POST" request-payload-type="java.lang.Object" />
+	<integration:channel id="requestChannel"/>
+    <integration:channel id="outputChannel"/>
+<integration:channel id="male"/>
+<jms:outbound-channel-adapter id="jmsOut1" channel="male" destination-name="male" />
+<integration:channel id="other"/>
+<jms:outbound-channel-adapter id="jmsOut2" channel="other" destination-name="other" />
+<integration:router input-channel="requestChannel" expression="payload.gender.equals('male') ? 'male' : 'other' />
+</beans>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <beans  
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:integration="http://www.springframework.org/schema/integration"
+xmlns:int-http="http://www.springframework.org/schema/integration/http"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/integration https://www.springframework.org/schema/integration/spring-integration.xsd http://www.springframework.org/schema/integration/http  http://www.springframework.org/schema/integration/http/spring-integration-http.xsd http://www.springframework.org/schema/integration/xml https://www.springframework.org/schema/integration/xml/spring-integration-xml.xsd http://www.springframework.org/schema/integration/jdbc http://www.springframework.org/schema/integration/jdbc/spring-integration-jdbc.xsd"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:int="http://www.springframework.org/schema/integration"
+xmlns:int-jdbc="http://www.springframework.org/schema/integration/jdbc"
+xmlns:int-xml="http://www.springframework.org/schema/integration/xml">
+ <int-http:inbound-channel-adapter channel="channel1" path="/users" supported-methods="POST" request-payload-type="java.lang.Object" />
+	<integration:channel id="requestChannel"/>
+    <integration:channel id="outputChannel"/>
+ <int:splitter input-channel="channel1" output-channel="channel2" />
+	<integration:channel id="channel2"/>
+ <int-jdbc:outbound-channel-adapter channel="channel2" data-source="dataSource" query="INSERT INTO test.test_tbl(test_id,test_name)VALUES(:payload[Id], :payload[name]);" />
+</beans>

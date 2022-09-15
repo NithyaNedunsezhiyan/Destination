@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <beans  
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:integration="http://www.springframework.org/schema/integration"
+xmlns:int-http="http://www.springframework.org/schema/integration/http"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/integration https://www.springframework.org/schema/integration/spring-integration.xsd http://www.springframework.org/schema/integration/xml https://www.springframework.org/schema/integration/xml/spring-integration-xml.xsd http://www.springframework.org/schema/integration/http  http://www.springframework.org/schema/integration/http/spring-integration-http.xsd "
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:int="http://www.springframework.org/schema/integration"
+xmlns:int-xml="http://www.springframework.org/schema/integration/xml">
+ <int-http:inbound-channel-adapter channel="channel1" path="/json" supported-methods="POST" request-payload-type="java.lang.Object" />
+	<integration:channel id="requestChannel"/>
+    <integration:channel id="outputChannel"/>
+ <int:json-to-object-transformer id="json-2-object-transformer" input-channel="requestChannel" output-channel="outputChannel" type="com.lti.test.User" />
+<int:channel id="files"/>
+</beans>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <beans  
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:int-file="http://www.springframework.org/schema/integration/file"
+xmlns:integration="http://www.springframework.org/schema/integration"
+xmlns:jms="http://www.springframework.org/schema/integration/jms"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/integration https://www.springframework.org/schema/integration/spring-integration.xsd http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:int="http://www.springframework.org/schema/integration">
+ <int-file:inbound-channel-adapter id="filesIn1" directory="${file.input.directory}" prevent-duplicates="true" ignore-hidden="true" auto-startup="true" channel="files" />
+<int:channel id="files"/>
+ <int-file:file-to-string-transformer id="file-2-string-transformer" input-channel="files" output-channel="out" charset="UTF-8" />
+ <jms:outbound-channel-adapter id="jmsout" channel="out" destination-name="sales" />
+<integration:channel id="out"/>
+ <integration:header-enricher input-channel="files" output-channel="out"/>
+   
+</beans>

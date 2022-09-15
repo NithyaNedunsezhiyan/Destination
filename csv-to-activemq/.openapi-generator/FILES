@@ -1,0 +1,13 @@
+.openapi-generator-ignore
+README.md
+pom.xml
+src/main/java/com/lti/OpenApiGeneratorApplication.java
+src/main/java/com/lti/RFC3339DateFormat.java
+src/main/java/com/lti/config/HomeController.java
+src/main/java/com/lti/config/SpringDocConfiguration.java
+src/main/java/com/lti/controllers/ApiUtil.java
+src/main/java/com/lti/controllers/HealthApi.java
+src/main/java/com/lti/controllers/HealthApiController.java
+src/main/resources/application.properties
+src/main/resources/openapi.yaml
+src/test/java/com/lti/OpenApiGeneratorApplicationTests.java

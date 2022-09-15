@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <beans  
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:integration="http://www.springframework.org/schema/integration"
+xmlns:int-http="http://www.springframework.org/schema/integration/http"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/integration https://www.springframework.org/schema/integration/spring-integration.xsd http://www.springframework.org/schema/integration/http  http://www.springframework.org/schema/integration/http/spring-integration-http.xsd http://www.springframework.org/schema/integration/xml https://www.springframework.org/schema/integration/xml/spring-integration-xml.xsd"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:int="http://www.springframework.org/schema/integration"
+xmlns:int-xml="http://www.springframework.org/schema/integration/xml">
+ <int-http:inbound-channel-adapter channel="channel1" path="/xml" supported-methods="POST" request-payload-type="java.lang.Object" />
+	<integration:channel id="requestChannel"/>
+    <integration:channel id="outputChannel"/>
+ <bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller"> 
+ <property name="contextPath" value="com.lti.model" /> 
+ </bean> 
+
+ <int-xml:unmarshalling-transformer id="defaultUnmarshaller" input-channel="requestChannel" output-channel="outputChannel" unmarshaller="jaxbMarshaller" />
+ <int:object-to-json-transformer id="object-2-json-transformer" input-channel="outputChannel" output-channel="out" />
+</beans>
