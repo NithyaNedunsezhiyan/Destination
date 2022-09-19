@@ -5,11 +5,11 @@
         
     <groupId>com.lti</groupId>
         
-    <artifactId>mule-to-si</artifactId>
+    <artifactId>inboundsoapwebservice</artifactId>
         
     <packaging>jar</packaging>
         
-    <name>mule-to-si</name>
+    <name>inboundsoapwebservice</name>
         
     <version>1.0.0</version>
         
