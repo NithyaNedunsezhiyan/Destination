@@ -11,6 +11,6 @@ xmlns:int="http://www.springframework.org/schema/integration">
 	             default-request-channel="requestChannel"/>	
  <int-ws:inbound-gateway request-channel="requestChannel" />
  <int:service-activator input-channel="requestChannel">
- <bean class="com.lti.InboundOutboundSoapService.model.InboundResponse" />
+ <bean class="com.lti.controllers.InboundResponse" />
  </int:service-activator>
 </beans>
