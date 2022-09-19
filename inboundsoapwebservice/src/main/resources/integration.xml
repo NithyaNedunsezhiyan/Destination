@@ -15,3 +15,4 @@ xmlns:int="http://www.springframework.org/schema/integration">
  <bean class="com.lti.controllers.InboundResponse" />
  </int:service-activator>
 </beans>
+</beans>
