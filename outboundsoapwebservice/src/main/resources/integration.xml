@@ -17,6 +17,6 @@ xmlns:int="http://www.springframework.org/schema/integration">
  <ws:header-enricher>
  <ws:soap-action value="https://www.w3schools.com/xml/FahrenheitToCelsius"/>
  </ws:header-enricher>
- <ws:outbound-gateway uri="${externalROOTAPI.url}" extract-payload="true" />
+ <ws:outbound-gateway uri="${externalWebserviceAPIURL}" extract-payload="true" />
 </chain>
  </beans:beans>
