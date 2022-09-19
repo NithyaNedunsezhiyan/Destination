@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <beans  
+  <beans:beans  
 xmlns="http://www.springframework.org/schema/integration"
 xmlns:integration="http://www.springframework.org/schema/integration"
 xmlns:beans="http://www.springframework.org/schema/beans"
