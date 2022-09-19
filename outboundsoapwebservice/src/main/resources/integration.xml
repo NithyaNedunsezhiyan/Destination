@@ -8,4 +8,11 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:int="http://www.springframework.org/schema/integration">
  <int-http:inbound-channel-adapter channel="channel1" path="/invokeOutboundMuleWebService" supported-methods="POST" request-payload-type="java.lang.Object" />
+	<int:channel id="requestChannel"/>
+ <chain input-channel="requestChannel">
+ <ws:header-enricher>
+ <ws:soap-action value="https://www.w3schools.com/xml/FahrenheitToCelsius"/>
+ </ws:header-enricher>
+ <ws:outbound-gateway  uri="https://www.w3schools.com/xml/tempconvert.asmx" extract-payload="true" />
+</chain>
 </beans>
